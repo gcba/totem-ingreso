@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+	<meta charset="UTF-8">
+
+	<!-- Material Design -->
+		<link rel="stylesheet" href="css/material.css">
+		<script type="text/javascript" src="lib/js/material.js"></script>
+
+	<!-- MD Keyboard  -->
+		<link rel="stylesheet" href="lib/md-keyboard/css/md-keyboard.css">
+		<script type="text/javascript" src="lib/md-keyboard/js/md-keyboard.js"></script>
+
+	<!-- CSS -->
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/fonts/fonts.css">
+		<link rel="stylesheet" href="css/ticket.css">
+		<link rel="stylesheet" href="css/animate.min.css">
+
+		<script type="text/javascript" src="lib/js/functions.js"></script>
+
+
+	<title>Totem Entrada</title>
+</head>
+<body onload="funciones_de_carga()" style="background-color: rgb(253, 253, 253);">
+
+	<div id="loader" class="non-printable">
+		<div class="loader-container">
+			<div class="loader">
+				<svg class="circular" viewBox="25 25 50 50">
+					<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-linecap="round" stroke-miterlimit="10"/>
+				</svg>
+			</div>
+		</div>
+	</div>
+
+	<div id="screen" class="non-printable">
+
+		<div class="contenido">
+
+				<div class="contenido-wrapper">
+
+					<div class="anterior boton-movimiento text-align-center display-table">
+						<div class="display-table-cell vertical-align-middle">
+							<a id="boton-anterior" class="btn btn-float btn-float-lg btn-float-icon btn-primary display-inline-b" z-shadow="3">
+								<div class="display-table" style="width: 100%; height: 100%;">
+									<div class="display-table-cell vertical-align-middle">
+										<i class="material-icons">arrow_back</i>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+
+					<div class="pantallas">
+
+						<!-- Pantallas -->
+						<div class="contenedor-pantallas">
+
+							<!-- PANTALLA 0 BIENVENIDA -->
+								<div id="pantalla-0" class="pantalla display-none">
+
+									<div class="pantalla-inner text-align-center display-table">
+
+										<div class="display-table-cell vertical-align-middle">
+											<div class="titulo-mmit bienvenido">Bienvenido</div>
+											<div class="titulo-mmit">Ministerio de Modernización, Innovación y Tecnología</div>
+											<button class="btn btn-raised btn-totem animated infinite pulse" z-shadow="4" onclick="siguiente_pantalla();">Ingresar</button>
+											<div class="mensaje-bienvenida">Toque el botón para ingresar al edificio</div>
+										</div>
+
+									</div>
+								</div>
+
+							<!-- PANTALLA 1 SELECCIONAR PERSONA -->
+								<div id="pantalla-1" class="pantalla display-none">
+
+									<div class="centrar-pantalla">
+
+										<div class="mensaje-primario">Buenos días,</div>
+										<div class="mensaje-secundario">¿A quien venís a ver?</div>
+
+										<div id="cont-busqueda-persona" class="input-group inputTotem">
+											<input id="buscar-persona" class="input-textfield" type="text" placeholder="Nombre y Apellido" autocomplete="off" reference-list="busqueda-persona" onkeyup="buscar_lista_personas(this)" data-mdkeyboard="alphabetic" maxlength="60" onkeypress="bloquear_caracteres(event, 'alfabetico')" />
+										</div>
+
+										<input id="hidden-verif-info" type="hidden">
+
+										<div id="busqueda-persona" class="lista-dinamica-personas display-none animated"></div>
+
+									</div>
+								</div>
+
+							<!-- PANTALLA 2 SELECCIONAR NUMERO Y TIPO DE DNI -->
+								<div id="pantalla-2" class="pantalla display-none">
+
+									<div class="centrar-pantalla">
+
+										<div class="mensaje-primario">Ingresá tus datos</div>
+										<div class="mensaje-secundario">Tipo y número de documento: </div>
+
+										<div id="tipo-documento" class="grupo-tipo-documento"></div>
+
+										<div id="cont-ingreso-dni" class="input-group inputTotem">
+											<input id="ingreso-dni" class="input-textfield" type="text" placeholder="Ej: 12.345.678" autocomplete="off" onkeyup="validar_ingreso_documento()" data-mdkeyboard="numeric" maxlength="11" onkeypress="bloquear_caracteres(event, 'numerico')" />
+										</div>
+
+									</div>
+								</div>
+
+							<!-- PANTALLA 3 REGISTRO (PRIMERA VEZ) -->
+								<div id="pantalla-3" class="pantalla display-none">
+
+									<div class="centrar-pantalla">
+
+										<div class="mensaje-primario">¡Bienvenido/a al Palacio Lezama!</div>
+										<div class="mensaje-secundario">Como es tu primera vez acá, necesitamos que completes los siguientes datos para continuar:</div>
+
+										<div class="cont-registro-inputs">
+
+											<div class="input-group inputTotem">
+												<input id="registro-nombre" class="input-textfield" type="text" placeholder="Nombre(s)" autocomplete="off" autocapitalize="on" data-mdkeyboard="alphabetic" maxlength="30" onkeypress="bloquear_caracteres(event, 'alfabetico')" />
+											</div>
+
+											<div class="input-group inputTotem">
+												<input id="registro-apellido" class="input-textfield" type="text" placeholder="Apellido(s)" autocomplete="off" autocapitalize="on" onkeyup="verificar_input_registro()" data-mdkeyboard="alphabetic" maxlength="30" onkeypress="bloquear_caracteres(event, 'alfabetico')" />
+											</div>
+
+										</div>
+
+									</div>
+								</div>
+
+							<!-- PANTALLA 4 INFORMACION FINAL -->
+								<div id="pantalla-4" class="pantalla display-none">
+
+									<div class="centrar-pantalla">
+
+										<div class="mensaje-primario">Listo <span id="nombre-html"></span>, ya está todo!</div>
+										<div class="mensaje-secundario">Ahora podés dirigirte al personal de seguridad con el ticket impreso para ingresar al edificio.</div>
+
+										<div class="mensaje-secundario">Ante cualquier inquietud no dudes en acercarte a la recepción. Gracias.</div>
+
+										<div class="cont-boton">
+											<button class="btn btn-raised" onclick="location.reload()">Volver al inicio</button>
+										</div>
+
+									</div>
+								</div>
+
+						</div>
+
+					</div>
+
+					<div class="siguiente boton-movimiento text-align-center display-table">
+						<div class="display-table-cell vertical-align-middle">
+							<a id="boton-siguiente" class="btn btn-float btn-float-lg btn-float-icon btn-primary display-inline-b" z-shadow="3">
+								<div class="display-table" style="width: 100%; height: 100%;">
+									<div class="display-table-cell vertical-align-middle">
+										<i class="material-icons">arrow_forward</i>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+		<!-- Footer -->
+			<!-- <div class="footer flex-center">
+				<div class="logo" onclick="location.reload()"></div>
+			</div> -->
+	</div>
+
+	<div id="ticket" class="display-none printable">
+
+		<div class="ticket-header">
+			<div class="ticket-fecha">Fecha: <span id="ticket-fecha"></span></div>
+			<div class="ticket-hora">Hora: <span id="ticket-hora"></span></div>
+		</div>
+
+		<div class="ticket-main">
+			<div class="ticket-visitante">Invitado: <br /><span id="ticket-visitante"></span> </div>
+			<div class="ticket-documento">Documento: <br /><span id="ticket-tipo"></span> <span id="ticket-numero"></span> </div>
+			<div class="ticket-empleado">Visita a: <br /><span id="ticket-empleado"></span><br />
+			Int: <span id="ticket-interno"></span></div>
+
+		</div>
+
+		<div class="ticket-footer">
+			<div class="ticket-area"> <span id="ticket-secretaria"></span> | <span id="ticket-ministerio"></span> | <span id="ticket-ubicacion"></span></div>
+			<div class="ticket-direccion"><span id="ticket-direccion"><br /> </span></div>
+		</div>
+
+	</div>
+
+	<!-- Google Tag Manager -->
+		<!--
+			<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PVZ4KF"
+			height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+			<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+			new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+			})(window,document,'script','dataLayer','GTM-PVZ4KF');</script>
+		-->
+	<!-- End Google Tag Manager -->
+</body>
+</html>

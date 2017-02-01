@@ -1,0 +1,46 @@
+@font-face { font-family: 'Roboto'; font-style: normal; font-weight: 500; src: url('fonts/Roboto-Medium.eot'); src: local('â˜º'), url('fonts/Roboto-Medium.ttf') format('truetype') }
+@font-face { font-family: 'Roboto'; font-style: normal; font-weight: 400; src: url('fonts/Roboto-Regular.eot'); src: local('â˜º'), url('fonts/Roboto-Regular.ttf') format('truetype') }
+
+
+#mdkeyboard 								{ position: absolute; bottom: -1000px; left: 0; width: 100%; -webkit-transition: bottom .15s ease; -moz-transition: bottom .15s ease; -ms-transition: bottom .15s ease; -o-transition: bottom .15s ease; transition: bottom .15s ease; }
+#mdkeyboard * 								{ -webkit-touch-callout: none; /* iOS Safari */ -webkit-user-select: none; /* Chrome/Safari/Opera */ -khtml-user-select: none; /* Konqueror */ -moz-user-select: none; /* Firefox */ -ms-user-select: none; /* IE/Edge */ user-select: none; /* non-prefixed version, currently not supported by any browser */ }
+
+#mdkeyboard-main 							{ position: relative; float: left; width: 100%; background-color: #FFF; /*background-color: #616161;*/ border-top: 1px solid #BDBDBD; display: flex; flex-direction: row; align-items: center; justify-content: center; }
+#mdkeyboard-wrapper 						{ position: relative; float: left; width: 100%; height: 100%; padding: 8px 23px; box-sizing: border-box; /*width: calc(100% - 46px); height: calc(100% - 16px);*/ display: block; }
+#mdkeyboard-wrapper[flex] 					{ display: flex; flex-direction: row; align-items: center; justify-content: center; }
+#mdkeyboard-alphabetic 						{ position: relative; float: left; }
+#mdkeyboard-numeric 						{ position: relative; float: right; }
+
+.mdkeyboard-row 							{ position: relative; float: left; clear: left; }
+.mdkeyboard-key 							{ position: relative; float: left; width: 5.5vw; height: 45px; margin: 2px; padding: 3px; background-color: transparent; background-color: #F1F1F1; background-color: #E5E5E5; /*background-color: #757575;*/ border: 0; border-radius: 4px; outline: 0; box-sizing: initial; }
+.mdkeyboard-key .mdkeyboard-container 		{ position: relative; float: left; width: 100%; height: 100%; margin: 0px; padding: 0px; font-family: 'Roboto'; font-style: normal; font-weight: 400; font-size: 22px; color: #000; /*color: #FFF;*/ display: flex; flex-direction: row; justify-content: center; align-items: center; }
+.mdkeyboard-key.empty 						{ background-color: transparent !important; pointer-events: none !important; }
+.mdkeyboard-key.active 						{ background: #E0E0E0; }
+
+.mdkeyboard-key[mdkeyboard-key-action="backspace"] 							{ width: 7.4vw; }
+.mdkeyboard-key[mdkeyboard-key-action="backspace"] .mdkeyboard-container	{ background: url('../templates/backspace.svg') no-repeat center center; background-size: 24px; }
+.mdkeyboard-key[mdkeyboard-key-action="enter"] 								{ width: 5.5vw; }
+.mdkeyboard-key[mdkeyboard-key-action="enter"] .mdkeyboard-container 		{ background: url('../templates/enter.svg') no-repeat center center; background-size: 24px; }
+.mdkeyboard-key[mdkeyboard-key-action="shift"]:first-child					{ width: 5.5vw; }
+.mdkeyboard-key[mdkeyboard-key-action="shift"]:last-child 					{ width: 7.4vw; }
+.mdkeyboard-key[mdkeyboard-key-action="shift"] .mdkeyboard-container 		{ background: url('../templates/shift.svg') no-repeat center center; background-size: 24px; }
+.mdkeyboard-key.locked[mdkeyboard-key-action="shift"] 						{ background: #9E9E9E; }
+/*.mdkeyboard-key.locked[mdkeyboard-key-action="shift"] .mdkeyboard-container { background: #F1F1F1; }*/
+.mdkeyboard-key[mdkeyboard-key-action="space"] 								{ width: 30.5vw; }
+.mdkeyboard-key[mdkeyboard-key-action="space"] .mdkeyboard-container 		{ background: url('../templates/space.svg') no-repeat center center; background-size: 24px; }
+
+.mdkeyboard-key[mdkeyboard-key-action="check"] 								{ background-color: #69F0AE; }
+/*.mdkeyboard-key[mdkeyboard-key-action="check"] .mdkeyboard-container		{ background: url('../templates/check.svg') no-repeat center center; background-size: 32px; }*/
+
+#mdkeyboard-wrapper #mdkeyboard-alphabetic .mdkeyboard-key[mdkeyboard-key-action="check"] 			{ display: none; }
+#mdkeyboard-wrapper #mdkeyboard-numeric	 .mdkeyboard-key[mdkeyboard-key-action="check"]				{ display: block; }
+#mdkeyboard-wrapper[flex] #mdkeyboard-alphabetic .mdkeyboard-key[mdkeyboard-key-action="check"]		{ display: block; }
+#mdkeyboard-wrapper[flex] #mdkeyboard-numeric .mdkeyboard-key[mdkeyboard-key-action="check"]		{ display: block; }
+
+/*#mdkeyboard-wrapper #mdkeyboard-alphabetic .mdkeyboard-key[mdkeyboard-key-action="backspace"] 		{ display: block; }*/
+#mdkeyboard-wrapper #mdkeyboard-numeric	 .mdkeyboard-key.empty										{ display: block; }
+#mdkeyboard-wrapper #mdkeyboard-numeric	 .mdkeyboard-key[mdkeyboard-key-action="backspace"]			{ display: none; width: 5.5vw; }
+/*#mdkeyboard-wrapper[flex] #mdkeyboard-alphabetic .mdkeyboard-key[mdkeyboard-key-action="check"]		{ display: block; }*/
+#mdkeyboard-wrapper[flex] #mdkeyboard-numeric	 .mdkeyboard-key.empty										{ display: none; }
+#mdkeyboard-wrapper[flex] #mdkeyboard-numeric .mdkeyboard-key[mdkeyboard-key-action="backspace"]	{ display: block; }
+/*.mdkeyboard-key[mdkeyboard-key-action="zero"] 								{ width: calc(16.5vw + 20px); }*/

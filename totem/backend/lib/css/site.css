@@ -1,0 +1,53 @@
+
+.cursor-pointer, #tablaEmpleados tr{
+	cursor: pointer;
+}
+
+#tablaEmpleados th:hover {
+	background: #eaeaea;
+}
+
+#agregarEmpleado {
+	padding: 10px;
+}
+
+.navbar-title h1 {
+	color: #333;
+}
+
+.navbar {
+  background-color: #FFF;
+}
+
+.navbar.navbar-primary {
+  height: 85px;
+}
+
+a.navbar-title h1, a.navbar-brand.image {
+  margin: 0;
+  padding: 0;
+}
+
+a.navbar-brand.image img {
+  height: 40px;
+}
+
+.h100 {
+	height: 100%;
+}
+
+.display-table {
+	display: table;
+}
+
+.display-table-cell {
+	display: table-cell;
+}
+
+.vertical-align {
+	vertical-align: middle;
+}
+
+.pull-none-xs{
+	float: none !important;
+}
